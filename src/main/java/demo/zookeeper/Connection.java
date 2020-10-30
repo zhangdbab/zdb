@@ -12,7 +12,6 @@ public class Connection {
         ZooKeeper zooKeeper =
                 new ZooKeeper("10.7.90.131:2181,10.7.90.130:2181,10.7.90.199:2181",
                         4000, new Watcher() {
-                    @Override
                     public void process(WatchedEvent watchedEvent) {
                         if (Event.KeeperState.SyncConnected== watchedEvent.getState()){
                             countDownLatch.countDown();
