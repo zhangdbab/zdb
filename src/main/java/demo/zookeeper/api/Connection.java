@@ -1,12 +1,13 @@
-package demo.zookeeper;
+package demo.zookeeper.api;
 
 import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.Stat;
 
+import javax.sound.midi.Synthesizer;
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 
-public class Connection {
+public class Connection     {
     public static void main(String[] args) throws IOException, InterruptedException, KeeperException {
         final CountDownLatch countDownLatch =new CountDownLatch(1);
         ZooKeeper zooKeeper =

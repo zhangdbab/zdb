@@ -1,4 +1,4 @@
-package demo.zookeeper;
+package demo.zookeeper.api;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;

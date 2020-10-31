@@ -1,4 +1,4 @@
-package demo.zookeeper;
+package demo.zookeeper.api;
 
 import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.Stat;
