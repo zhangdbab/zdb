@@ -1,4 +1,4 @@
-package demo.dubbo;
+package demo.dubbo.cluster;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
