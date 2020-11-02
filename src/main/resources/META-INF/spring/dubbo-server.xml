@@ -9,10 +9,12 @@
 <!--     提供方信息-->
      <dubbo:application name="zdb"  owner="zdb"/>
 <!--    注册中心-->
-     <dubbo:registry address="zookeeper://10.7.90.199:2181"></dubbo:registry>
+    <dubbo:registry  address="zookeeper://10.7.90.199:2181" id="zk1"></dubbo:registry>
+    <dubbo:registry address="zookeeper://10.7.90.130:2181" id="zk2"></dubbo:registry>
     <dubbo:protocol name="dubbo" port="20880" ></dubbo:protocol>
     <dubbo:protocol name="hessian" port="8088" ></dubbo:protocol>
-    <dubbo:service interface="demo.dubbo.api.IHelloService" ref="helloServiceImpl" protocol="hessian,dubbo" />
+    <dubbo:service interface="demo.dubbo.api.IHelloService" ref="helloServiceImpl" protocol="hessian,dubbo" registry="zk1" />
+
     <bean id="helloServiceImpl" class="demo.dubbo.server.impl.HelloServiceImpl"></bean>
 
 
