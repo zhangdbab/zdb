@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Bootstrap {
     public static void main(String[] args) throws IOException {
         ClassPathXmlApplicationContext classPathXmlApplicationContext
-                =new ClassPathXmlApplicationContext("dubbo-server.xml") ;
+                =new ClassPathXmlApplicationContext("META-INF/spring/dubbo-server.xml") ;
         classPathXmlApplicationContext.start();
         System.in.read();
 
