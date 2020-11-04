@@ -23,6 +23,8 @@ public class Test {
 
         System.out.println(protocol1.getDefaultPort());
 
+        System.out.println("11");
+
 
 //        Protocol protocol3 = ExtensionLoader.getExtensionLoader(Protocol.class).getDefaultExtension();
 //        System.out.println(    protocol3.getDefaultPort());
