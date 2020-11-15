@@ -7,6 +7,7 @@ import java.nio.ByteBuffer;
 /**
  * Created by DJ009828 on 2020/11/15
  * 只读buffer HeapByteBufferR
+ * 只读buffer不能转化为读写buffer
  */
 public class NioTest7 {
     public static void main(String[] args) {
