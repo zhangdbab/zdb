@@ -62,12 +62,13 @@ public class NioTest12 {
                     while (true){
                         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
                         byteBuffer.clear();
+                        //从socketChannel里面读数据
                         int read = socketChannel.read(byteBuffer);
                         if (read==0){
                             break;
                         }
                         byteBuffer.flip();
-                        //写回去
+                        //往socketChannel里面写数据
                         socketChannel.write(byteBuffer);
 
                         byteRead+=read;
