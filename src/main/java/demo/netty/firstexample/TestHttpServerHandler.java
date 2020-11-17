@@ -17,6 +17,8 @@ public class TestHttpServerHandler extends SimpleChannelInboundHandler<HttpObjec
 
         ByteBuf content = Unpooled.copiedBuffer("hello world", CharsetUtil.UTF_8);
         if(msg instanceof  HttpRequest){
+            HttpRequest httpRequest =(HttpRequest)msg;
+            System.out.println("请求方法名："+httpRequest.method().name());
             FullHttpResponse response =
                     new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK,content);
             response.headers().set(HttpHeaderNames.CONTENT_TYPE,"text/plain");
