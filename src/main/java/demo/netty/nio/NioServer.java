@@ -1,5 +1,6 @@
 package demo.netty.nio;
 
+import javax.print.DocFlavor;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -15,7 +16,7 @@ import java.util.*;
  * Created by DJ009828 on 2020/11/16
  */
 public class NioServer {
-    private  static Map<String ,SocketChannel> map =new HashMap<>();
+    private  static Map<String ,SocketChannel> socketChannelmap =new HashMap<>();
 
     public static void main(String[] args) throws IOException {
 
@@ -24,7 +25,7 @@ public class NioServer {
         ServerSocketChannel serverSocketChannel =ServerSocketChannel.open();
         serverSocketChannel.configureBlocking(false);
         ServerSocket serverSocket = serverSocketChannel.socket();
-        serverSocket.bind(new InetSocketAddress(8899));
+        serverSocket.bind(new InetSocketAddress(8989));
 
         Selector selector =Selector.open();
         //注册
@@ -45,14 +46,14 @@ public class NioServer {
                         client.configureBlocking(false);
                         client.register(selector,SelectionKey.OP_READ);
                         String key = "["+UUID.randomUUID()+"]";
-                        map.put(key,client);
+                        socketChannelmap.put(key,client);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }else  if (selectionKey.isReadable()){
 
                     ByteBuffer byteBuffer=ByteBuffer.allocate(1024);
-                     client =(SocketChannel)selectionKey.channel();
+                    client =(SocketChannel)selectionKey.channel();
                     try {
                       int number =    client.read(byteBuffer);
                       if (number>0){
@@ -60,10 +61,24 @@ public class NioServer {
                           Charset charset =Charset.forName("utf-8");
                           String recivmessage = String.valueOf(charset.decode(byteBuffer).array());
                           System.out.println(client+"revmessage:"+recivmessage);
-                          for (Map.Entry<String ,SocketChannel> entry :map.entrySet()){
-                                
+                          String sendkye=null;
+                          for (Map.Entry<String ,SocketChannel> entry :socketChannelmap.entrySet()){
+                              if(entry.getValue()==client){
+                                  sendkye=entry.getKey();
+                                  break;
+                              }
+                          }
+
+                          for (Map.Entry<String ,SocketChannel> entry :socketChannelmap.entrySet()){
+                              ByteBuffer    writeBuffer = ByteBuffer.allocate(1024);
+                              String responsMesssage = sendkye+"->"+recivmessage;
+                              writeBuffer.put(responsMesssage.getBytes());
+                              writeBuffer.flip();
+                              entry.getValue().write(writeBuffer);
 
                           }
+
+
                       }
 
                     } catch (IOException e) {
