@@ -1,9 +1,7 @@
 package demo.socket.client;
 
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
@@ -84,7 +82,41 @@ public class Client extends Thread {
     //函数入口
     public static void main(String[] args) {
         //需要服务器的正确的IP地址和端口号
-        Client clientTest=new Client("127.0.0.1", 8090);
-        clientTest.start();
+//        Client clientTest=new Client("www.zdb-dev.com", 48090);
+//        clientTest.start();
+        try {
+            //发送到8888端口
+//            Socket socket=new Socket("www.zdb-dev.com", 48090);
+            Socket socket=new Socket("localhost", 8091);
+
+            OutputStream outputStream=socket.getOutputStream();
+            PrintWriter printWriter=new PrintWriter(outputStream);
+            printWriter.write(Xml.sendstr);
+
+            printWriter.flush();
+            //关闭资源
+            //从服务端程序接收数据
+
+            InputStream s = socket.getInputStream();
+            byte[] buf = new byte[1024];
+            int len = 0;
+
+            while ((len = s.read(buf)) != -1) {
+                System.out.println(getdate() + "  服务器说：  "+new String(buf, 0, len,"UTF-8"));
+                if (len==991)break;
+            }
+            s.close();
+            printWriter.close();
+            outputStream.close();
+
+            socket.close();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+
+        }
+
     }
 }
