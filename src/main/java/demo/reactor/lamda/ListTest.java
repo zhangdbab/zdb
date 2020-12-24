@@ -26,6 +26,7 @@ public class ListTest {
         list.stream().map(input->input.toUpperCase()).forEach(input->System.out.println(input));
         System.out.println(":: 是一个Function ");
          //:: 是一个Function
+//        方法引用 情况之一： 如果用类类型引用实例方法那么第一个输入参数是调用方法的对象
         list.stream().map(String::toUpperCase).forEach(input->System.out.println(input));
 
     }
