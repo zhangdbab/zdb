@@ -4,7 +4,7 @@ import java.util.function.Function;
 
 /**
  * Created by DJ009828 on 2020/12/22
- * 知道functio的行为 用户使用是时候传递行为
+ * 不知道functio的行为 用户使用是时候传递行为
  */
 public class FunctionTest1 {
     public static void main(String[] args) {
@@ -20,6 +20,11 @@ public class FunctionTest1 {
     public  int test (int a ,Function<Integer,Integer> function){
          int result=function.apply(a);
         return  result;
+    }
+    // 不用lamda 提前定义的行为
+    public  int add(int a ){
+        return  a+2;
+
     }
 
 }
