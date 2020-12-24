@@ -19,7 +19,7 @@ public class StringComparator {
         //方式二
         Collections.sort(stringList,(String o1,String o2)->{return o1.compareTo(o2);});
         System.out.println(stringList);
-        //方式三 去掉 return 和 {;}
+        //方式三 去掉 return 和 {;}  只有一条语句的代码块return语句可以省略掉
         Collections.sort(stringList,(String o1,String o2)-> o1.compareTo(o2));
         System.out.println(stringList);
         //方式四
