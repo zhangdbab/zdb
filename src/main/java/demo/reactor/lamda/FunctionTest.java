@@ -13,5 +13,7 @@ public class FunctionTest {
 //        toUpperCase 实例方法   方法引用 情况之一： 如果用类类型引用实例方法那么第一个输入参数是调用方法的对象
         Function<String,String> function1 = String::toUpperCase;
         System.out.println(function1.getClass().getInterfaces()[0]);
+
+
     }
 }
