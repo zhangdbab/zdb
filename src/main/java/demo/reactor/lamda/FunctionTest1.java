@@ -17,6 +17,7 @@ public class FunctionTest1 {
 
     }
     //不知道functio的行为 用户使用是时候传递行为
+    // 以函数为参数的函数为高阶函数
     public  int test (int a ,Function<Integer,Integer> function){
          int result=function.apply(a);
         return  result;
@@ -24,7 +25,6 @@ public class FunctionTest1 {
     // 不用lamda 提前定义的行为
     public  int add(int a ){
         return  a+2;
-
     }
 
 }
