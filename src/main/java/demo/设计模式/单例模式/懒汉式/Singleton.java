@@ -1,4 +1,4 @@
-package demo.单例模式.懒汉式;
+package demo.设计模式.单例模式.懒汉式;
 
 public class Singleton {
 

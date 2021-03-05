@@ -1,4 +1,4 @@
-package demo.单例模式.懒汉式;
+package demo.设计模式.单例模式.懒汉式;
 
 /**
  * 双检锁/双重校验锁 + volatile关键字

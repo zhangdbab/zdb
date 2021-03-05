@@ -1,4 +1,4 @@
-package demo.proxy.动态代理;
+package demo.设计模式.代理模式.动态代理;
 
 
 import java.lang.reflect.InvocationHandler;

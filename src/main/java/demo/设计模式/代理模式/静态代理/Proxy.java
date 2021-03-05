@@ -1,4 +1,4 @@
-package demo.proxy.静态代理;
+package demo.设计模式.代理模式.静态代理;
 
 
 public class Proxy implements Target{

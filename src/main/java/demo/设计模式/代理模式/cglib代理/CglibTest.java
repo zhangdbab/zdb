@@ -1,4 +1,4 @@
-package demo.proxy.cglib代理;
+package demo.设计模式.代理模式.cglib代理;
 
 
 import org.springframework.cglib.proxy.Enhancer;
