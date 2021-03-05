@@ -13,6 +13,5 @@ public class MyApplicationInitializer  {
         HelloService helloService =(HelloService)annotationConfigApplicationContext.getBean("helloService");
         helloService.sayHello();
 
-
     }
 }

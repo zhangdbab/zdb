@@ -8,11 +8,11 @@ import org.springframework.context.annotation.Configuration;
  * Created by DJ009828 on 2020/11/6
  */
 @Configuration
-//@ComponentScan("demo.spring")
+@ComponentScan("demo.spring")
 public class AppConfig {
-    @Bean
-
-    public  HelloService helloService(){
-        return new HelloService();
-    }
+//    @Bean
+//
+//    public  HelloService helloService(){
+//        return new HelloService();
+//    }
 }

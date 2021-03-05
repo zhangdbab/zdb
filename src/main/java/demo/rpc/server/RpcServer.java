@@ -11,6 +11,8 @@ import java.util.concurrent.Executors;
  */
 public class RpcServer {
      private  static final ExecutorService executorService = Executors.newCachedThreadPool();
+    private  static final ExecutorService executorService2 = Executors.newFixedThreadPool(10);
+
 
     public   void    publisher(Object service,int port ) throws IOException {
         ServerSocket serverSocket = null ;
