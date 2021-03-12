@@ -1,4 +1,4 @@
-package demo.消息队列.简单队列;
+package demo.消息队列.工作模式.简单队列;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;

@@ -1,4 +1,4 @@
-package demo.消息队列.主题模式;
+package demo.消息队列.工作模式.主题模式;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;

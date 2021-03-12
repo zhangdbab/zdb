@@ -1,34 +1,41 @@
-package demo.消息队列.订阅模式;
+package demo.消息队列.工作模式.路由模式;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
+import demo.消息队列.服务连接.MQConnectionUtils;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
-import demo.消息队列.服务连接.MQConnectionUtils;
 
 /**
- * @desc:    发布订阅模式——生产者
+ * @desc:    路由模式——生产者
+ *  
+ *
  */
-public class ProducerFanout {
+public class ProdecerRouting {
 
-    private static final String EXCHANGE_NAME = "fanout_exchange";
-
+    private static final String EXCHANGE_NAME = "my_rout_exchange";
     public static void main(String[] args) throws IOException, TimeoutException {
         /** 1.创建新的连接 */
         Connection connection = MQConnectionUtils.newConnection();
         /** 2.创建通道 */
         Channel channel = connection.createChannel();
         /** 3.绑定的交换机 参数1交互机名称 参数2 exchange类型 */
-        channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+        channel.exchangeDeclare(EXCHANGE_NAME, "direct");
         /** 4.发送消息 */
+        String message = "",sendType="";
         for (int i = 0; i < 10; i++)
         {
-            String message = "用户注册消息：" + i;
-            System.out.println("[send]：" + message);
-            //发送消息
-            channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes("utf-8"));
+            if(i%2==0){
+                sendType = "info";
+                message = "我是 info 级别的消息类型：" + i;
+            }else{
+                sendType = "error";
+                message = "我是 error 级别的消息类型：" + i;
+            }
+            System.out.println("[send]：" + message + "  " +sendType);
+            channel.basicPublish(EXCHANGE_NAME, sendType, null, message.getBytes("utf-8"));
             try {
                 Thread.sleep(5 * i);
             } catch (InterruptedException e) {

@@ -1,4 +1,4 @@
-package demo.消息队列.工作队列;
+package demo.消息队列.工作模式.工作队列;
 
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;

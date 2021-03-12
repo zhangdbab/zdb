@@ -1,4 +1,4 @@
-package demo.消息队列.主题模式;
+package demo.消息队列.工作模式.订阅模式;
 
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
@@ -12,17 +12,14 @@ import java.util.concurrent.TimeoutException;
 
 
 /**
- * @desc:    主题模式——log * 消费者
- * @author:  niceyoo
- * @blog:    https://cnblogs.com/niceyoo
+ * @desc:    发布订阅模式——短信消费者
  */
-public class ConsumerLogXTopic {
+public class ConsumerSMSFanout {
 
-    private static final String QUEUE_NAME = "topic_consumer_info";
-    private static final String EXCHANGE_NAME = "my_topic_exchange";
-
+    private static final String QUEUE_NAME = "ConsumerFanout_sms";
+    private static final String EXCHANGE_NAME = "fanout_exchange";
     public static void main(String[] args) throws IOException, TimeoutException {
-        System.out.println("log * 消费者启动");
+        System.out.println("短信消费者启动");
         /* 1.创建新的连接 */
         Connection connection = MQConnectionUtils.newConnection();
         /* 2.创建通道 */
@@ -30,7 +27,7 @@ public class ConsumerLogXTopic {
         /* 3.消费者关联队列 */
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         /* 4.消费者绑定交换机 参数1 队列 参数2交换机 参数3 routingKey */
-        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "log.*");
+        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "");
         DefaultConsumer consumer = new DefaultConsumer(channel) {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body)
